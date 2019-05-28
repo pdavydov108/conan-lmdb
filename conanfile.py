@@ -8,9 +8,7 @@ class LmdbConan(ConanFile):
     author = "Pavel Davydov pdavydov108@gmail.com"
     url = "https://github.com/LMDB/lmdb"
     description = "Conan package for LDAP's lmdb database."
-    settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False]}
-    default_options = "shared=False"
+    settings = "os", "compiler", "arch"
     generators = "make"
 
     @property
@@ -29,8 +27,6 @@ class LmdbConan(ConanFile):
 
     def package(self):
         self.copy("*.h", dst="include", src=self.source_dir)
-        self.copy("*.so", dst="lib", src=self.source_dir, keep_path=False)
-        self.copy("*.dylib", dst="lib", src=self.source_dir, keep_path=False)
         self.copy("*.a", dst="lib", src=self.source_dir, keep_path=False)
 
     def package_info(self):
